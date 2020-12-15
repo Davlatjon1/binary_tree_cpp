@@ -5,12 +5,27 @@ typedef int Data;
 
 typedef struct Node{
 	Data data;
-	struct Node * left;
-	struct Node * right;
+	struct Node *left;
+	struct Node *right;
 } Node;
 
-void tree_print(Node * tree);			// печать дерева
-Node * tree_add(Node * tree, Data d); //добавить данные в дерево
+void tree_print(Node *tree);			// pechat' dereva
+Node * tree_add(Node *tree, Data d); //dobavit' dannie
+
+void tree_print(Node *tree){ //pechat' dereva
+	if (tree==NULL){
+//		cout<<"\nNULL: \n";
+		return;
+	}	
+	tree_print(tree->left);
+	cout<<tree->data<<" ";
+	tree_print(tree->right);
+}
+
+void print(Node *tree){
+	tree_print(tree);
+	cout<<"\n";
+}
 
 int main(){
 	Node
@@ -22,7 +37,15 @@ int main(){
 		eight = {8, NULL, NULL},
 		nine = {9, NULL, NULL};
 	
-	Node * tree = NULL; // указатель на корень
-	cout<<two.left;
+	Node *tree = NULL; // ukazatel' na koren
+	tree = &seven;
+	seven.left = &three; //naxodim levuyu pod semerki
+	seven.right = &nine; //naxodim proav.
+	three.left = &two;
+	two.left = &one;
+	three.right = &five;
+	nine.left = &eight;
+	
+	print(&seven);
 	return 0;
 }
