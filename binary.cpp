@@ -1,4 +1,6 @@
  #include<iostream>
+ #include<stdio.h>
+ #include<stdlib.h>
 using namespace std;
 typedef int Data;
 
@@ -26,6 +28,23 @@ void print(Node *tree){
 	cout<<"\n";
 }
 
+Node *tree_add(Node *tree, Data d){ //add a date to tree
+	if (tree==NULL){
+		Node *t;
+		t->data = d;
+		t->left = t->right = NULL;
+		
+		return t;
+	}
+	if (d< tree->data){
+		tree->left = tree_add(tree->left, d);
+	}
+	if (d> tree->data){
+		tree->right = tree_add(tree->right, d);
+	}
+	return tree;
+}
+
 int main(){
 	Node
 		one = {1, NULL, NULL},
@@ -37,6 +56,8 @@ int main(){
 		nine = {9, NULL, NULL};
 	
 	Node *tree = NULL; // ukazatel' na koren
+	print(tree);
+
 	tree = &seven;
 	seven.left = &three; //naxodim levuyu pod semerki
 	seven.right = &nine; //naxodim proav.
